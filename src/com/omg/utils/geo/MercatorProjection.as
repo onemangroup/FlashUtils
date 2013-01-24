@@ -39,5 +39,31 @@ package com.omg.utils.geo
             var lng:Number = (x / (mapWidth / 360)) - 180;
             return new Point(MathUtils.rad2deg(lat), lng);
         }
+
+        public static function decToDMS(lat:Number, lng:Number):Point
+    	{
+
+			// change the decimal degrees to degrees minutes seconds
+			var tempf:Number = new Number();
+			var latd:Number = new Number();
+			var lond:Number = new Number();
+			// first do the latitude
+			tempf = Math.abs(lat);
+			latd = int(tempf);
+			tempf = (tempf - latd) * 60.0;
+			if(lat < 0) {		// put the sign back on the degrees
+				latd = -latd;
+			}
+			
+			// now do the longitude
+			tempf = Math.abs(lng);
+			lond = int(tempf);
+			tempf = (tempf - lond) * 60.0;
+			if(lng < 0){
+				lond = -lond;
+			}
+			
+			return new Point(latd,lond);
+		}
     }
 }
